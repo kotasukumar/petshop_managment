@@ -3,7 +3,7 @@ package com.petshop;
 import java.util.Objects;
 
     public abstract class Pet {
-        enum Colour{BLACK, RED, BLACK_WHITE, GREEN, WHITE}
+        public enum Colour{BLACK, RED, BLACK_WHITE, GREEN, WHITE}
 
         String id;
         Colour colour;

@@ -5,8 +5,19 @@ import java.util.HashSet;
 import java.util.Set;
 
     public class PetStorage {
+        static PetStorage instance;
 
         private Set<Pet> petList = new HashSet();
+
+        private PetStorage() {
+        }
+
+        public static PetStorage getInstance(){
+            if (instance == null){
+                instance = new PetStorage();
+            }
+            return instance;
+        }
 
         public void add(Pet pet){
             petList.add(pet);

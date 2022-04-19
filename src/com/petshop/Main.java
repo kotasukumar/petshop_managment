@@ -1,10 +1,11 @@
 package com.petshop;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
-    PetStorage petStorage = new PetStorage();
+    PetStorage petStorage = PetStorage.getInstance();
     UserInterface userInterface = new UserInterface();
 
     public void handelUserSelection(int choice) {
@@ -34,114 +35,122 @@ public class Main {
             case 5:
                 break;
             default:
-                    System.out.println("Entered choice is invalid, please enter a valid one");
-                }
-            }
+                System.out.println("Entered choice is invalid, please enter a valid one");
+        }
+    }
 
-            public void add() {
-                Animal cat = new Cat("CAT001");
-                cat.age = 6;
-                cat.price = 20000;
-                cat.breed = "CATCAT";
+    public void add() {
+        Animal cat = new Cat("CAT001");
+        cat.age = 6;
+        cat.price = 20000;
+        cat.breed = "CATCAT";
 
-                Animal cat1 = new Cat("CAT001");
-                cat.age = 6;
-                cat.price = 20000;
-                cat.breed = "CATCAT1";
+        Animal cat1 = new Cat("CAT001");
+        cat.age = 6;
+        cat.price = 20000;
+        cat.breed = "CATCAT1";
 
-                Animal dog = new Dog("DOG001");
-                dog.age = 10;
-                dog.price = 40000;
-                dog.breed = "DOBBER";
+        Animal dog = new Dog("DOG001");
+        dog.age = 10;
+        dog.price = 40000;
+        dog.breed = "DOBBER";
 
-                Bird duck = new Duck("DUCK001");
-                duck.age = 9;
-                duck.price = 5000;
-                duck.species = "duckduck";
+        Bird duck = new Duck("DUCK001");
+        duck.age = 9;
+        duck.price = 5000;
+        duck.species = "duckduck";
 
-                Bird parrot = new Parrot("PARROT001");
-                parrot.age = 1;
-                parrot.price = 2000;
-                parrot.species = "GREENPARROT";
+        Bird parrot = new Parrot("PARROT001");
+        parrot.age = 1;
+        parrot.price = 2000;
+        parrot.species = "GREENPARROT";
 
-                Animal rabbit = new Rabbit("RABBIT001");
-                rabbit.age = 2;
-                rabbit.price = 4500;
-                rabbit.breed = "RABBITBIT";
+        Animal rabbit = new Rabbit("RABBIT001");
+        rabbit.age = 2;
+        rabbit.price = 4500;
+        rabbit.breed = "RABBITBIT";
 
-                petStorage.add(cat);
-                petStorage.add(dog);
-                petStorage.add(duck);
-                petStorage.add(parrot);
-                petStorage.add(rabbit);
-                petStorage.add(cat1);
-            }
-            public void update(Pet pet){
-                Scanner scanner = new Scanner(System.in);
-                int parameter = userInterface.showUpdateMenu();
-                switch (parameter){
-                    case 1:
-                        System.out.println("Enter the new name ");
-                        pet.name = scanner.next();
-                        break;
-                    case 2:
-                        System.out.println("Enter the new ID ");
-                        pet.id = scanner.next();
-                        break;
-                    case 3:
-                        colour(pet);
-                        break;
-                    case 4:
-                        System.out.println("Enter the new age ");
-                        pet.age = scanner.nextInt();
-                        break;
-                    case 5:
-                        System.out.println("Enter the new price ");
-                        pet.price = scanner.nextInt();
-                        break;
-                    default:
-                        System.out.println("please enter a valid input");
-                }
-            }
+        petStorage.add(cat);
+        petStorage.add(dog);
+        petStorage.add(duck);
+        petStorage.add(parrot);
+        petStorage.add(rabbit);
+        petStorage.add(cat1);
+    }
 
-            public void colour(Pet pet){
-                System.out.println("please select colour from below");
-                System.out.println("1-BLACK, 2-RED, 3-BLACK_WHITE, 4-GREEN, 5-WHITE");
-                Scanner scanner = new Scanner(System.in);
-                int choice = scanner.nextInt();
-                switch (choice){
-                    case 1:
-                        pet.colour = Pet.Colour.BLACK;
-                        break;
-                    case 2:
-                        pet.colour = Pet.Colour.RED;
-                        break;
-                    case 3:
-                        pet.colour = Pet.Colour.BLACK_WHITE;
-                        break;
-                    case 4:
-                        pet.colour = Pet.Colour.GREEN;
-                        break;
-                    case 5:
-                        pet.colour = Pet.Colour.WHITE;
-                        break;
-                    default:
-                        System.out.println("please enter a valid input");
-                }
-            }
+    public void update(Pet pet){
+        Scanner scanner = new Scanner(System.in);
+        int parameter = userInterface.showUpdateMenu();
+        switch (parameter){
+            case 1:
+                System.out.println("Enter the new name ");
+                pet.name = scanner.next();
+                break;
+            case 2:
+                System.out.println("Enter the new ID ");
+                pet.id = scanner.next();
+                break;
+            case 3:
+                colour(pet);
+                break;
+            case 4:
+                System.out.println("Enter the new age ");
+                pet.age = scanner.nextInt();
+                break;
+            case 5:
+                System.out.println("Enter the new price ");
+                pet.price = scanner.nextInt();
+                break;
+            default:
+                System.out.println("please enter a valid input");
+        }
+    }
+
+    public void colour(Pet pet){
+        System.out.println("please select colour from below");
+//        System.out.println("1-BLACK, 2-RED, 3-BLACK_WHITE, 4-GREEN, 5-WHITE");
+        /*Arrays.asList(Pet.Colour.values())
+        .forEach(Colour -> System.out.println( Colour.c));*/
+        Scanner scanner = new Scanner(System.in);
+        int count = 0;
+        for (Pet.Colour c: Pet.Colour.values()) {
+            count++;
+            System.out.println(count + "-" + c);
+        }
+        int choice = scanner.nextInt();
+        switch (choice){
+            case 1:
+                pet.colour = Pet.Colour.BLACK;
+                break;
+            case 2:
+                pet.colour = Pet.Colour.RED;
+                break;
+            case 3:
+                pet.colour = Pet.Colour.BLACK_WHITE;
+                break;
+            case 4:
+                pet.colour = Pet.Colour.GREEN;
+                break;
+            case 5:
+                pet.colour = Pet.Colour.WHITE;
+                break;
+            default:
+                System.out.println("please enter a valid input");
+        }
+    }
 
 
-            public static void main(String[] args) {
-                System.out.println("Welcome to the Pet management system !");
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Pet management system !");
 
-                UserInterface userInterface = new UserInterface();
-                Main main = new Main();
+        UserInterface userInterface = new UserInterface();
+        Main main = new Main();
 
-                int choice = 0;
-                while (choice != 5) {
-                    choice = userInterface.showMainMenu();
-                    main.handelUserSelection(choice);
-                }
+        int choice = 0;
+        while (choice != 5) {
+            choice = userInterface.showMainMenu();
+            main.handelUserSelection(choice);
+        }
 
         /*Animal cat = new Cat("CAT001");
         cat.age = 6;
@@ -199,7 +208,7 @@ public class Main {
         userInterface.printFlyables(petList);
         System.out.println("Pet that can swim are");
         userInterface.printSwimmables(petList);*/
-            }
-        }
+    }
+}
 
 
