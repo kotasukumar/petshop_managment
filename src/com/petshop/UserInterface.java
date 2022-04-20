@@ -6,6 +6,17 @@ import java.util.Scanner;
 import  java.util.Set;
 
     public class UserInterface{
+        static UserInterface instance;
+
+        private UserInterface() {
+        }
+
+        public static UserInterface getInstance(){
+            if (instance == null){
+                instance = new UserInterface();
+            }
+            return instance;
+        }
         public void print(Set<Pet> petList){
             for(Pet o: petList) {
                 System.out.println(o);

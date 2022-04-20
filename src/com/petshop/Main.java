@@ -5,10 +5,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    PetStorage petStorage = PetStorage.getInstance();
-    UserInterface userInterface = new UserInterface();
-
     public void handelUserSelection(int choice) {
+        PetStorage petStorage = PetStorage.getInstance();
         String petID;
         Scanner scanner;
         switch (choice) {
@@ -30,6 +28,7 @@ public class Main {
                 update(petToUpdate);
                 break;
             case 4:
+                UserInterface userInterface = UserInterface.getInstance();
                 userInterface.print(petStorage.getPetList());
                 break;
             case 5:
@@ -70,6 +69,7 @@ public class Main {
         rabbit.price = 4500;
         rabbit.breed = "RABBITBIT";
 
+        PetStorage petStorage = PetStorage.getInstance();
         petStorage.add(cat);
         petStorage.add(dog);
         petStorage.add(duck);
@@ -80,6 +80,7 @@ public class Main {
 
     public void update(Pet pet){
         Scanner scanner = new Scanner(System.in);
+        UserInterface userInterface = UserInterface.getInstance();
         int parameter = userInterface.showUpdateMenu();
         switch (parameter){
             case 1:
@@ -108,9 +109,7 @@ public class Main {
 
     public void colour(Pet pet){
         System.out.println("please select colour from below");
-//        System.out.println("1-BLACK, 2-RED, 3-BLACK_WHITE, 4-GREEN, 5-WHITE");
-        /*Arrays.asList(Pet.Colour.values())
-        .forEach(Colour -> System.out.println( Colour.c));*/
+
         Scanner scanner = new Scanner(System.in);
         int count = 0;
         for (Pet.Colour c: Pet.Colour.values()) {
@@ -139,11 +138,10 @@ public class Main {
         }
     }
 
-
     public static void main(String[] args) {
         System.out.println("Welcome to the Pet management system !");
 
-        UserInterface userInterface = new UserInterface();
+        UserInterface userInterface = UserInterface.getInstance();
         Main main = new Main();
 
         int choice = 0;
