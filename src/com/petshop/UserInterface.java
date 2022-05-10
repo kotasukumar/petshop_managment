@@ -1,11 +1,9 @@
 package com.petshop;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import  java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
-    public class UserInterface{
+public class UserInterface{
         static UserInterface instance;
 
         private UserInterface() {
@@ -18,17 +16,19 @@ import  java.util.Set;
             return instance;
         }
         public void print(Set<Pet> petList){
-            for(Pet o: petList) {
+            petList.stream().forEach(y -> System.out.println(y));
+            /*for(Pet o: petList) {
                 System.out.println(o);
-            }
+            }*/
         }
 
         public void printAnimals(Set<Pet> petList) {
-            for(Pet o: petList){
+            petList.stream().forEach(x -> System.out.println(x instanceof Animal));
+            /*for(Pet o: petList){
                 if (o instanceof Animal){
                     System.out.println(o);
                 }
-            }
+            }*/
         }
 
         public void printBirds(Set<Pet> petList) {

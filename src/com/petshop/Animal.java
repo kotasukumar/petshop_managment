@@ -1,18 +1,25 @@
 package com.petshop;
 
-    public abstract class Animal extends Pet {
+    public class Animal extends Pet {
         String breed;
+        String animalName;
 
         @Override
         public String toString() {
             return "Animal{" +
                     "breed='" + breed + '\'' +
+                    ", animalName='" + animalName + '\'' +
                     ", id='" + id + '\'' +
-                    ", colour='" + colour + '\'' +
+                    ", colour=" + colour +
                     ", name='" + name + '\'' +
                     ", age=" + age +
                     ", price=" + price +
                     '}';
+    }
+
+        @Override
+        public void eat() {
+
         }
     }
 

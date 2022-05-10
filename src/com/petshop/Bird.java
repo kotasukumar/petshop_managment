@@ -1,7 +1,8 @@
 package com.petshop;
 
-    public abstract class Bird extends Pet{
+    public class Bird extends Pet{
         String species;
+        String birdName;
 
         @Override
         public String toString() {
@@ -13,5 +14,10 @@ package com.petshop;
                     ", age=" + age +
                     ", price=" + price +
                     '}';
+        }
+
+        @Override
+        public void eat() {
+
         }
     }

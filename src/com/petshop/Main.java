@@ -1,6 +1,5 @@
 package com.petshop;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +10,7 @@ public class Main {
         Scanner scanner;
         switch (choice) {
             case 1:
-                add();
+                addPet();
                 break;
             case 2:
                 System.out.println("please enter id of pet you want to remove ");
@@ -38,8 +37,36 @@ public class Main {
         }
     }
 
-    public void add() {
-        Animal cat = new Cat("CAT001");
+    public void addPet() {
+        Scanner scanner = new Scanner(System.in);
+        PetStorage petStorage = PetStorage.getInstance();
+        System.out.println("Whether you want to add animal or bird\n1-animal\n2-bird");
+        int choice = scanner.nextInt();
+        switch (choice){
+            case 1:
+                Animal animal = new Animal();
+                System.out.println("Enter the name of the animal");
+                Scanner scanner1 = new Scanner(System.in);
+                animal.animalName = scanner1.nextLine();
+                System.out.println("Enter the breed of the animal");
+                animal.breed = scanner1.nextLine();
+                addPetDetails(animal);
+                petStorage.add(animal);
+                break;
+            case 2:
+                Bird bird = new Bird();
+                System.out.println("Enter the name of the bird");
+                Scanner scanner2 = new Scanner(System.in);
+                bird.birdName = scanner2.next();
+                System.out.println("Enter the species of the bird");
+                bird.species = scanner2.nextLine();
+                addPetDetails(bird);
+                petStorage.add(bird);
+                break;
+            default:
+                System.out.println("please enter either 1 or 2 only");
+        }
+        /*Animal cat = new Cat("CAT001");
         cat.age = 6;
         cat.price = 20000;
         cat.breed = "CATCAT";
@@ -75,9 +102,21 @@ public class Main {
         petStorage.add(duck);
         petStorage.add(parrot);
         petStorage.add(rabbit);
-        petStorage.add(cat1);
+        petStorage.add(cat1);*/
     }
 
+    public void addPetDetails(Pet pet){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the nick name ");
+        pet.name = scanner.next();
+        System.out.println("Enter the ID ");
+        pet.id = scanner.next();
+        colour(pet);
+        System.out.println("Enter the age ");
+        pet.age = scanner.nextInt();
+        System.out.println("Enter the price ");
+        pet.price = scanner.nextInt();
+    }
     public void update(Pet pet){
         Scanner scanner = new Scanner(System.in);
         UserInterface userInterface = UserInterface.getInstance();
